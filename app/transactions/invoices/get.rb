@@ -1,6 +1,6 @@
 class Transactions::Invoices::Get < Transactions::BaseTransaction
   map :map_params
-  step :find_invoice
+  step :find_invoices
 
   private
 
@@ -11,7 +11,7 @@ class Transactions::Invoices::Get < Transactions::BaseTransaction
     @end_date = params[:end_date]
   end
 
-  def find_invoice
+  def find_invoices
     @invoices = filter_invoices
 
     Success(invoices_response)
