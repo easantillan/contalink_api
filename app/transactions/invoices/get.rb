@@ -22,9 +22,11 @@ class Transactions::Invoices::Get < Transactions::BaseTransaction
 
   def filter_invoices
     if @start_date.present? && @end_date.present?
-      return Invoice.where('DATE(invoice_date) BETWEEN ? AND ? ', @start_date, @end_date)
+      return Invoice
+               .where('DATE(invoice_date) BETWEEN ? AND ? ', @start_date, @end_date)
+               .order(invoice_date: :asc)
     end
-    Invoice.all
+    Invoice.order(invoice_date: :asc)
   end
 
   def invoices_response
