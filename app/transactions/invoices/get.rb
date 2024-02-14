@@ -28,7 +28,7 @@ class Transactions::Invoices::Get < Transactions::BaseTransaction
   end
 
   def invoices_response
-    invoices = @invoices.page(@page)
+    invoices = @invoices.page(@page).per(15)
 
     {
       invoices: invoices,
