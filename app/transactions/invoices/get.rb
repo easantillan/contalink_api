@@ -13,12 +13,11 @@ class Transactions::Invoices::Get < Transactions::BaseTransaction
 
   def find_invoices
     @invoices = filter_invoices
-
     Success(invoices_response)
   rescue => e
     # Here i would use a service like Rollbar or Sentry to log the error
     Rails.logger.error(e)
-    Failure(e)
+    Failure(error: 'An error occurred while fetching invoices')
   end
 
   def filter_invoices
