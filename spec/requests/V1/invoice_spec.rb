@@ -24,6 +24,12 @@ RSpec.describe V1::InvoicesController, type: :request do
         expect(json_response["invoices"].count).to eq(25)
       end
 
+      it "returns 0 invoces for the 20th page, since it does not exist" do
+        get "/V1/invoices", params: { page: 20 }
+        json_response = JSON.parse(response.body)
+        expect(json_response["invoices"].count).to eq(0)
+      end
+
       it "returns a list of invoices for datas between 2020-01-01 and 2020-12-31" do
         get "/V1/invoices", params: { start_date: "2020-01-01", end_date: "2020-12-31" }
         json_response = JSON.parse(response.body)
