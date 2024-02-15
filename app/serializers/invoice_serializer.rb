@@ -8,7 +8,7 @@ class InvoiceSerializer < ActiveModel::Serializer
   end
 
   def invoice_date
-    object.invoice_date.strftime("%m/%d/%Y %I:%M %p")
+    object.invoice_date.strftime("%d/%m/%Y %I:%M %p")
   end
 
   def serializable_hash(adapter_options = nil, options = {}, adapter_instance = self.class.serialization_adapter_instance)
